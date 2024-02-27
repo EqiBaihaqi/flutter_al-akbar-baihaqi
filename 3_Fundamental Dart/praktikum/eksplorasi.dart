@@ -30,7 +30,7 @@ bool isPalindrome(String word) {
 void faktor(int number) {
   for (int i = 1; i <= number; i++) {
     if (number % i == 0) {
-      print(i);
+      print('Faktorial dari bilangan tersebut adalah : $i');
     }
   }
 }
