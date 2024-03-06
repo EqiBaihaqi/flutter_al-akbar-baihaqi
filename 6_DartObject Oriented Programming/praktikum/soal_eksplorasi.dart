@@ -2,6 +2,7 @@ void main(List<String> args) {
   //Membuat beberapa object detail buku yang nantinya akan ditambahkan ke list dari DataBuku
   var buku1 = DetailBuku(01, 'Sherlock Holmes', 'Rudi', '50.000', 'Action');
   var buku2 = DetailBuku(02, 'Lemari Biru', 'Joko', '20.000', 'Drama');
+  // ignore: unused_local_variable
   var buku3 = DetailBuku(03, 'One Day', 'Santi', '30.000', 'Romance');
 
   var dataBuku = DataBuku();
