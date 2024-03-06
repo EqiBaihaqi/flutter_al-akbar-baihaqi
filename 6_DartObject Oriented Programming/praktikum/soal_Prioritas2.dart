@@ -64,14 +64,13 @@ class Course {
   Course(this.judul, this.deskripsi);
 }
 
-class Student extends Course {
+class Student {
   final String nama;
   final String kelas;
   List<Course> courses = []; //Membuat list dengan tipe class Course
 
-  Student(this.nama, this.kelas)
-      : super('',
-            ''); //menambahkan super karena pada class Course required 2 buah parameter
+  Student(this.nama, this.kelas);
+
   //method tambah course dengan parameter bertipe Course
   tambahCourse(Course courseTambah) {
     courses.add(courseTambah);
