@@ -9,10 +9,18 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
+      //menghilagkan debug banner
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
-        body: Center(
-          child: Text('Hello World!'),
+        appBar: AppBar(
+          title: const Text('Halo Alterra'),
+        ),
+        body: const Center(
+          child: Text(
+            'Nama saya adalah Al Akbar Baihaqi',
+            style: TextStyle(fontSize: 20),
+          ),
         ),
       ),
     );
