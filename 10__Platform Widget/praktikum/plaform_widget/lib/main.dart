@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:plaform_widget/cupertino.dart';
 
 void main() {
-  runApp(const MainApp());
+  runApp(const Cupertino());
 }
 
 class MainApp extends StatelessWidget {
