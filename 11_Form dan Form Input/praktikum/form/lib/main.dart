@@ -17,24 +17,28 @@ class MainApp extends StatefulWidget {
 }
 
 class _MainAppState extends State<MainApp> {
-  final TextEditingController _nameController = TextEditingController();
-  final TextEditingController _nomorController = TextEditingController();
+  TextEditingController nameController = TextEditingController();
+  TextEditingController nomorController = TextEditingController();
   String? _errorName = '';
   String? _errorNomor = '';
   List<ListContact> daftarKontak = [];
   bool isUpdateContact = false;
+  bool isPrefixActive =
+      true; // Variable untuk membuat prefix hide ketika form diklik
+  int _index = -1;
 
+  //Membuat kondisi untuk validation error
   bool textFormCheck() {
     return _errorName == null &&
         _errorNomor == null &&
-        _nameController.text != '' &&
-        _nomorController.text != '';
+        nameController.text != '' &&
+        nomorController.text != '';
   }
 
   @override
   void dispose() {
-    _nameController.dispose();
-    _nomorController.dispose();
+    nameController.dispose();
+    nomorController.dispose();
     super.dispose();
   }
 
@@ -80,15 +84,24 @@ class _MainAppState extends State<MainApp> {
                   height: 15,
                 ),
                 TextFormFieldCustom(
-                  controller: _nameController,
+                  controller: nameController,
                   keyboard: TextInputType.name,
                   labelText: 'Nama',
                   hint: 'Tolong Masukan Nama',
                   onChanged: (value) {
-                    _nameController.text = value;
-                    if (_nameController.text.isEmpty) {
+                    nameController.text = value;
+                    if (nameController.text.isEmpty) {
                       _errorName = 'Nama masih kosong';
-                    } else if (_nameController.text.length <= 2) {
+                      //Membuat validasi bahwa isi dari form nama harus hanya berupa huruf dan spacebar
+                    } else if (!RegExp(r'^[a-zA-Z\s]+$')
+                        .hasMatch(nameController.text)) {
+                      _errorName = 'Nama harus berupa huruf saja';
+                      // Membuat kondisi jika huruf awal tidak mengandung huruf kapital
+                    } else if (!nameController.text
+                        .substring(0, 1)
+                        .contains(RegExp(r'[A-Z]'))) {
+                      _errorName = 'Nama harus diawali huruf kapital';
+                    } else if (nameController.text.length <= 2) {
                       _errorName = 'Nama harus lebih dari 2 huruf';
                     } else {
                       _errorName = null;
@@ -101,21 +114,33 @@ class _MainAppState extends State<MainApp> {
                   height: 15,
                 ),
                 TextFormFieldCustom(
-                  controller: _nomorController,
+                  controller: nomorController,
                   isValidInput: true,
-                  keyboard: TextInputType.phone,
+                  keyboard: TextInputType
+                      .phone, //otomatis hanya dapat menginputkan nomor
                   labelText: 'Nomor',
-                  prefix: '+62',
+                  prefix: isPrefixActive
+                      ? '+62'
+                      : '', //Otomatis membuat awalan nomor adalah '0'
                   onChanged: (value) {
-                    _nomorController.text = value;
-                    if (_nomorController.text.isEmpty) {
+                    nomorController.text = value;
+                    if (nomorController.text.isEmpty) {
                       _errorNomor = 'Nomor masih kosong';
-                    } else if (_nomorController.text.length <= 6) {
-                      _errorNomor = 'Nomor HP setidaknya 8 angka';
+                      // Kondisi jika awal nomor bukan 0
+                    } else if (nomorController.text[0] != '0') {
+                      _errorNomor = 'Nomor harus diawali dengan angka 0';
+                      //Jika length < 8 dan > 15 maka akan memunculkan error
+                    } else if (nomorController.text.length < 8 ||
+                        nomorController.text.length > 15) {
+                      _errorNomor =
+                          'Nomor HP setidaknya terdiri dari 8-15 digit';
                     } else {
                       _errorNomor = null;
                     }
-                    setState(() {});
+                    setState(() {
+                      isPrefixActive =
+                          false; // Merubah variable menjadi false ketika mengetikan value
+                    });
                   },
                   errorText: _errorNomor,
                 ),
@@ -132,11 +157,21 @@ class _MainAppState extends State<MainApp> {
                               ? () {
                                   if (isUpdateContact == true) {
                                     //Perintah update
+                                    daftarKontak[_index] = ListContact(
+                                        nameController.text,
+                                        nomorController.text);
+                                    setState(() {});
+                                    nameController.clear();
+                                    nomorController.clear();
+                                  } else {
+                                    daftarKontak.add(ListContact(
+                                        nameController.text,
+                                        nomorController.text));
+                                    setState(() {});
+
+                                    nameController.clear();
+                                    nomorController.clear();
                                   }
-                                  daftarKontak.add(ListContact(
-                                      _nameController.text,
-                                      _nomorController.text));
-                                  setState(() {});
                                 }
                               : null,
                           style: textFormCheck()
@@ -165,8 +200,12 @@ class _MainAppState extends State<MainApp> {
                                   children: [
                                     IconButton(
                                         onPressed: () {
-                                          isUpdateContact == true;
-
+                                          isUpdateContact = true;
+                                          nameController.text =
+                                              daftarKontak[index].name;
+                                          nomorController.text =
+                                              daftarKontak[index].nomor;
+                                          _index = index;
                                           setState(() {});
                                         },
                                         icon: const Icon(Icons.edit)),
