@@ -122,7 +122,7 @@ class _MainAppState extends State<MainApp> {
                   labelText: 'Nomor',
                   prefix: isPrefixActive
                       ? '+62'
-                      : '', //Otomatis membuat awalan nomor adalah '0'
+                      : '', 
                   onChanged: (value) {
                     nomorController.text = value;
                     if (nomorController.text.isEmpty) {
@@ -140,7 +140,7 @@ class _MainAppState extends State<MainApp> {
                     }
                     setState(() {
                       isPrefixActive =
-                          false; // Merubah variable menjadi false ketika mengetikan value
+                          false; // Merubah variable menjadi false ketika mengetikan value, sehingga prefix akan hilang
                     });
                   },
                   errorText: _errorNomor,
