@@ -1,7 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/widgets.dart';
 import 'package:form/model/daftar_kontak.dart';
 import 'package:form/widget/text_form_custom.dart';
 
@@ -120,9 +117,7 @@ class _MainAppState extends State<MainApp> {
                   keyboard: TextInputType
                       .phone, //otomatis hanya dapat menginputkan nomor
                   labelText: 'Nomor',
-                  prefix: isPrefixActive
-                      ? '+62'
-                      : '', 
+                  prefix: isPrefixActive ? '+62' : '',
                   onChanged: (value) {
                     nomorController.text = value;
                     if (nomorController.text.isEmpty) {
