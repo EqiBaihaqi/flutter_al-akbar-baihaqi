@@ -25,27 +25,25 @@ class TextFormFieldCustom extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        margin: const EdgeInsets.symmetric(horizontal: 20),
-        child: TextFormField(
-          keyboardType: keyboard,
-          controller: controller,
-          decoration: InputDecoration(
-            errorText: errorText,
-            prefixText: prefix,
-            labelText: labelText,
-            hintText: hint,
-            border: const OutlineInputBorder(borderSide: BorderSide()),
-            filled: true,
-            fillColor: const Color(0xFFE7E0EC),
-            focusedBorder: const OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.black)),
-          ),
-          style: const TextStyle(color: Color(0xFF49454F)),
-          onChanged: onChanged,
-          inputFormatters: [
-            if (isValidInput) ...[FilteringTextInputFormatter.digitsOnly]
-          ],
-        ));
+    return TextFormField(
+      keyboardType: keyboard,
+      controller: controller,
+      decoration: InputDecoration(
+        errorText: errorText,
+        prefixText: prefix,
+        labelText: labelText,
+        hintText: hint,
+        border: const OutlineInputBorder(borderSide: BorderSide()),
+        filled: true,
+        fillColor: const Color(0xFFE7E0EC),
+        focusedBorder: const OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.black)),
+      ),
+      style: const TextStyle(color: Color(0xFF49454F)),
+      onChanged: onChanged,
+      inputFormatters: [
+        if (isValidInput) ...[FilteringTextInputFormatter.digitsOnly]
+      ],
+    );
   }
 }
