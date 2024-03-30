@@ -1,5 +1,14 @@
+import 'package:file_picker/file_picker.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:form/model/daftar_kontak.dart';
+import 'package:flutter/widgets.dart';
+
+import 'package:form/const/date_format_constant.dart';
+import 'package:form/model/list_contact_model.dart';
+import 'package:form/widget/color_picker_widget.dart';
+import 'package:form/widget/file_picker_widget.dart';
+
+import 'package:form/widget/select_date_widget.dart';
 import 'package:form/widget/text_form_custom.dart';
 
 class Textform extends StatefulWidget {
@@ -12,6 +21,7 @@ class Textform extends StatefulWidget {
 class _TextformState extends State<Textform> {
   TextEditingController nameController = TextEditingController();
   TextEditingController nomorController = TextEditingController();
+
   String? _errorName = '';
   String? _errorNomor = '';
   List<ListContact> daftarKontak = [];
@@ -19,6 +29,32 @@ class _TextformState extends State<Textform> {
   bool isPrefixActive =
       true; // Variable untuk membuat prefix hide ketika form diklik
   int _index = -1;
+  DateTime pilihDate = DateTime.now();
+  DateTime dateAkhir = DateTime.now();
+  DateTime dateAwal = DateTime(1999);
+
+  //Variable untuk color picker
+  Color currentColor = Colors.green;
+  Color pickColor = Colors.white;
+
+  //Vazriable untukl mengambil inputan dari file picker widget
+  PlatformFile? pickFile;
+
+  //Membuat function untuk mengedit data
+  void onEdit(int index) {
+    isUpdateContact = true;
+    nameController.text = daftarKontak[index].name;
+    nomorController.text = daftarKontak[index].nomor;
+    _index = index;
+    setState(() {});
+  }
+
+  void onDelete(int index) {
+    daftarKontak.remove(
+      daftarKontak[index],
+    );
+    setState(() {});
+  }
 
   //Membuat kondisi untuk validation error
   bool textFormCheck() {
@@ -136,11 +172,50 @@ class _TextformState extends State<Textform> {
                 const SizedBox(
                   height: 15,
                 ),
+                SelectDateWidget(
+                    pilihDate: pilihDate,
+                    dateAwal: dateAwal,
+                    dateAkhir: dateAkhir,
+                    onchanged: (newDate) {
+                      pilihDate = newDate;
+                      setState(() {});
+                    }),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    const Text('Date'),
-                    TextButton(onPressed: () {}, child: const Text('Select'))
+                    Text(DateFormatConstant.getDayDateHours(pilihDate)),
+                  ],
+                ),
+                const SizedBox(
+                  height: 6,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    ColorPickerWidget(
+                        currentColor: currentColor,
+                        pickColor: pickColor,
+                        onchanged: (newColor) {
+                          pickColor = newColor;
+                        }),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    FilePickerWidget(
+                      pickedFile: pickFile,
+                      onchanged: (newFile) {
+                        pickFile = newFile;
+                        setState(() {});
+                      },
+                    ),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Text(pickFile?.name ?? 'No File Selected'),
                   ],
                 ),
                 Row(
@@ -152,13 +227,22 @@ class _TextformState extends State<Textform> {
                               if (isUpdateContact == true) {
                                 //Perintah update
                                 daftarKontak[_index] = ListContact(
-                                    nameController.text, nomorController.text);
+                                    nameController.text,
+                                    nomorController.text,
+                                    pilihDate,
+                                    pickColor,
+                                    pickFile!);
                                 setState(() {});
                                 nameController.clear();
                                 nomorController.clear();
+                                pilihDate = DateTime.now();
                               } else {
                                 daftarKontak.add(ListContact(
-                                    nameController.text, nomorController.text));
+                                    nameController.text,
+                                    nomorController.text,
+                                    pilihDate,
+                                    pickColor,
+                                    pickFile!));
                                 setState(() {});
 
                                 nameController.clear();
@@ -178,41 +262,58 @@ class _TextformState extends State<Textform> {
                     ),
                   ],
                 ),
-                SingleChildScrollView(
-                  child: Column(
-                      children: List.generate(
-                          daftarKontak.length,
-                          (index) => ListTile(
-                                leading: CircleAvatar(
-                                  child: Text(daftarKontak[index].name[0]),
-                                ),
-                                title: Text(daftarKontak[index].name),
-                                subtitle: Text(daftarKontak[index].nomor),
-                                trailing: Wrap(
-                                  children: [
-                                    IconButton(
-                                        onPressed: () {
-                                          isUpdateContact = true;
-                                          nameController.text =
-                                              daftarKontak[index].name;
-                                          nomorController.text =
-                                              daftarKontak[index].nomor;
-                                          _index = index;
-                                          setState(() {});
-                                        },
-                                        icon: const Icon(Icons.edit)),
-                                    IconButton(
-                                        onPressed: () {
-                                          daftarKontak.remove(
-                                            daftarKontak[index],
-                                          );
-                                          setState(() {});
-                                        },
-                                        icon: const Icon(Icons.delete)),
-                                  ],
-                                ),
-                              ))),
-                )
+                Expanded(
+                  child: SingleChildScrollView(
+                    child: Column(
+                        children: List.generate(
+                            daftarKontak.length,
+                            (index) => ListTile(
+                                  leading: CircleAvatar(
+                                    child: Text(daftarKontak[index].name[0]),
+                                  ),
+                                  title: Text(daftarKontak[index].name),
+                                  subtitle: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(daftarKontak[index].nomor),
+                                      Text(
+                                        DateFormatConstant.getDayDateHours(
+                                            daftarKontak[index].tanggal),
+                                        maxLines: 1,
+                                      ),
+                                      Container(
+                                        margin: const EdgeInsets.symmetric(
+                                            vertical: 4),
+                                        width: 60,
+                                        height: 20,
+                                        decoration: BoxDecoration(
+                                            color: daftarKontak[index].warna),
+                                      ),
+                                      Text(
+                                        daftarKontak[index].fileDipilih?.name ??
+                                            'No File Selected',
+                                        maxLines: 1,
+                                      )
+                                    ],
+                                  ),
+                                  trailing: Wrap(
+                                    children: [
+                                      IconButton(
+                                          onPressed: () {
+                                            onEdit(index);
+                                          },
+                                          icon: const Icon(Icons.edit)),
+                                      IconButton(
+                                          onPressed: () {
+                                            onDelete(index);
+                                          },
+                                          icon: const Icon(Icons.delete)),
+                                    ],
+                                  ),
+                                ))),
+                  ),
+                ),
               ],
             ),
           ),

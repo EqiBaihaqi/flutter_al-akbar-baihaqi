@@ -3,10 +3,11 @@ import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class FilePickerWidget extends StatefulWidget {
-  PlatformFile? pickedFile;
-  ValueChanged onchanged;
-  FilePickerWidget(
+   PlatformFile? pickedFile;
+  final ValueChanged onchanged;
+   FilePickerWidget(
       {super.key, required this.pickedFile, required this.onchanged});
 
   @override
@@ -21,7 +22,7 @@ class _FilePickerWidgetState extends State<FilePickerWidget> {
           _pickFile();
           setState(() {});
         },
-        child: const Text('Pick and Open File'));
+        child: const Text('Pick File'));
   }
 
   void _pickFile() async {

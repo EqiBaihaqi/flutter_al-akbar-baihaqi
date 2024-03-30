@@ -32,6 +32,7 @@ class _SelectDateWidgetState extends State<SelectDateWidget> {
                 initialDate: widget.pilihDate,
                 firstDate: widget.dateAwal,
                 lastDate: widget.dateAkhir,
+                
               );
               if (selectDate != null) {
                 setState(() {
