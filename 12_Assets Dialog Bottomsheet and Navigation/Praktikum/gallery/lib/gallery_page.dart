@@ -1,5 +1,6 @@
 import 'package:assets_dialogbottomsheet_navgator/model/list_image_model.dart';
 import 'package:assets_dialogbottomsheet_navgator/view_image.dart';
+import 'package:assets_dialogbottomsheet_navgator/widget/drawer_widget.dart';
 import 'package:flutter/material.dart';
 
 class GalleryPage extends StatefulWidget {
@@ -13,6 +14,7 @@ class _GalleryPageState extends State<GalleryPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: DrawerWidget(),
       appBar: AppBar(
         backgroundColor: const Color(0xFF211134),
         title: const Text('Gallery'),
