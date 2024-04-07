@@ -20,7 +20,7 @@ class _FilePickerWidgetState extends State<FilePickerWidget> {
     return ElevatedButton(
         onPressed: () {
           _pickFile();
-          setState(() {});
+          setState( () {});
         },
         child: const Text('Pick File'));
   }

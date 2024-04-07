@@ -1,4 +1,5 @@
-import 'package:assets_dialogbottomsheet_navgator/contact.dart';
+
+import 'package:assets_dialogbottomsheet_navgator/contact/contact.dart';
 import 'package:assets_dialogbottomsheet_navgator/gallery_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -30,7 +31,7 @@ class DrawerWidget extends StatelessWidget {
           title: Text('Contact'),
           onTap: () {
             Navigator.push(
-                context, MaterialPageRoute(builder: (context) => Contact()));
+                context, MaterialPageRoute(builder: (context) => ContactPage()));
           },
         )
       ]),

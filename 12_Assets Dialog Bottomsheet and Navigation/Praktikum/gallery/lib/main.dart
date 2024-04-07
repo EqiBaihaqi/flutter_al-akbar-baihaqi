@@ -1,5 +1,7 @@
+import 'package:assets_dialogbottomsheet_navgator/contact/contact.dart';
+import 'package:assets_dialogbottomsheet_navgator/contact/contact_provider.dart';
 import 'package:assets_dialogbottomsheet_navgator/gallery_page.dart';
-import 'package:assets_dialogbottomsheet_navgator/homepage.dart';
+import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -13,14 +15,17 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(brightness: Brightness.light),
-      darkTheme: ThemeData(brightness: Brightness.dark),
-      themeMode: ThemeMode.dark,
-      debugShowCheckedModeBanner: false,
-      home: const Scaffold(
-        body: GalleryPage(),
-      ),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider<ContactProvider>(
+            create: (context) => ContactProvider()),
+      ],
+      child: MaterialApp(
+          theme: ThemeData(brightness: Brightness.light),
+          darkTheme: ThemeData(brightness: Brightness.dark),
+          themeMode: ThemeMode.dark,
+          debugShowCheckedModeBanner: false,
+          home: GalleryPage()),
     );
   }
 }

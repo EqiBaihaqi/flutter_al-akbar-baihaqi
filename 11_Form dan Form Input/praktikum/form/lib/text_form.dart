@@ -223,7 +223,7 @@ class _TextformState extends State<Textform> {
                   children: [
                     ElevatedButton(
                       onPressed: textFormCheck()
-                          ? () {
+                          ? () { 
                               if (isUpdateContact == true) {
                                 //Perintah update
                                 daftarKontak[_index] = ListContact(
