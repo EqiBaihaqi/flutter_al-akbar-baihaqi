@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 import 'package:form/const/date_format_constant.dart';
+import 'package:form/login_page.dart';
 import 'package:form/model/list_contact_model.dart';
+import 'package:form/utils/shared_pref.dart';
 import 'package:form/widget/color_picker_widget.dart';
 import 'package:form/widget/file_picker_widget.dart';
 
@@ -40,6 +42,15 @@ class _TextformState extends State<Textform> {
   //Vazriable untukl mengambil inputan dari file picker widget
   PlatformFile? pickFile;
 
+  //Variable untuk memanggil Username Shared Pref
+  String? username;
+
+  //Membuat function untuk memanggil usernam shared pref
+  void getUSername() async {
+    username = await SharedPrefLogin.getUsername();
+    setState(() {});
+  }
+
   //Membuat function untuk mengedit data
   void onEdit(int index) {
     isUpdateContact = true;
@@ -72,12 +83,32 @@ class _TextformState extends State<Textform> {
   }
 
   @override
+  void initState() {
+    getUSername();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
-          title: const Text('Contact'),
-        ),
+            title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text('Halo $username !'),
+            IconButton(
+                onPressed: () {
+                  SharedPrefLogin.removeAllKey();
+                  Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const LoginPage()),
+                      (route) => false);
+                },
+                icon: const Icon(Icons.logout))
+          ],
+        )),
         body: Center(
           child: Container(
             margin: const EdgeInsets.symmetric(horizontal: 16),
@@ -223,7 +254,7 @@ class _TextformState extends State<Textform> {
                   children: [
                     ElevatedButton(
                       onPressed: textFormCheck()
-                          ? () { 
+                          ? () {
                               if (isUpdateContact == true) {
                                 //Perintah update
                                 daftarKontak[_index] = ListContact(
