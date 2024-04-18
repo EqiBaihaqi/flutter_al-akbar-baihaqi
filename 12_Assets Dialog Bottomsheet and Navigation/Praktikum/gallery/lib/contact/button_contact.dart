@@ -1,5 +1,4 @@
 import 'package:assets_dialogbottomsheet_navgator/contact/contact_provider.dart';
-import 'package:assets_dialogbottomsheet_navgator/model/list_contact_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
