@@ -1,6 +1,8 @@
+import 'package:assets_dialogbottomsheet_navgator/bloc/button_bloc_bloc.dart';
 import 'package:assets_dialogbottomsheet_navgator/const/date_format_constant.dart';
 import 'package:assets_dialogbottomsheet_navgator/contact/contact_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 
 class ListContact extends StatelessWidget {
@@ -43,11 +45,18 @@ class ListContact extends StatelessWidget {
                 trailing: Wrap(
                   children: [
                     IconButton(onPressed: () {}, icon: const Icon(Icons.edit)),
-                    IconButton(
-                        onPressed: () {
-                          provider.deleteData(index);
-                        },
-                        icon: const Icon(Icons.delete)),
+                    BlocBuilder<ButtonBlocBloc, ButtonBlocState>(
+                      builder: (context, state) {
+                        return IconButton(
+                            onPressed: () {
+                              // provider.deleteData(index);
+                              context
+                                  .read<ButtonBlocBloc>()
+                                  .add(DeleteContactEvent(index));
+                            },
+                            icon: const Icon(Icons.delete));
+                      },
+                    ),
                   ],
                 ),
               );
