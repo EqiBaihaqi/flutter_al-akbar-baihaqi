@@ -1,8 +1,6 @@
-import 'dart:io';
 
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:form/const/date_format_constant.dart';
 import 'package:form/widget/color_picker_widget.dart';
 import 'package:form/widget/file_picker_widget.dart';

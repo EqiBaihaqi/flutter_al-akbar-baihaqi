@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:plaform_widget/cupertino.dart';
 import 'package:plaform_widget/eksplorasi/eksplorasi.dart';
 
 void main() {
