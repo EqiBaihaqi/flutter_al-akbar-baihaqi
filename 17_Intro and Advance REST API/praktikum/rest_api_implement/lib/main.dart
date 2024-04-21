@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rest_api_implement/convert_json.dart';
+import 'package:rest_api_implement/image_generator.dart';
 import 'package:rest_api_implement/post_page.dart';
 import 'package:rest_api_implement/put_page.dart';
 import 'package:rest_api_implement/show_image_api.dart';
@@ -14,6 +15,6 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-        debugShowCheckedModeBanner: false, home: ShowImageApi());
+        debugShowCheckedModeBanner: false, home: ImageGenerator());
   }
 }
