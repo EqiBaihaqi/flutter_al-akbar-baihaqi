@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'contact_provider.dart';
+import '../contact/contact_provider.dart';
 
 class FormUsername extends StatelessWidget {
   const FormUsername({super.key});

@@ -1,10 +1,10 @@
 import 'package:assets_dialogbottomsheet_navgator/contact/button_contact.dart';
-import 'package:assets_dialogbottomsheet_navgator/contact/colorpick.dart';
-import 'package:assets_dialogbottomsheet_navgator/contact/date.dart';
 import 'package:assets_dialogbottomsheet_navgator/contact/filepick.dart';
-import 'package:assets_dialogbottomsheet_navgator/contact/form_nomor.dart';
-import 'package:assets_dialogbottomsheet_navgator/contact/form_username.dart';
+import 'package:assets_dialogbottomsheet_navgator/widget/colorpick.dart';
 import 'package:assets_dialogbottomsheet_navgator/contact/list_contact.dart';
+import 'package:assets_dialogbottomsheet_navgator/widget/date.dart';
+import 'package:assets_dialogbottomsheet_navgator/widget/form_nomor.dart';
+import 'package:assets_dialogbottomsheet_navgator/widget/form_username.dart';
 import 'package:assets_dialogbottomsheet_navgator/widget/drawer_widget.dart';
 import 'package:flutter/material.dart';
 
