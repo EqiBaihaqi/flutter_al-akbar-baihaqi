@@ -51,6 +51,7 @@ class _LoginPageState extends State<LoginPage> {
               height: 12,
             ),
             TextFormField(
+              key: const Key('username_field'),
               controller: usernameController,
               decoration: const InputDecoration(
                 hintText: 'Username',
@@ -63,6 +64,7 @@ class _LoginPageState extends State<LoginPage> {
               height: 8,
             ),
             TextFormField(
+              key: const Key('password_field'),
               controller: passwordController,
               decoration: InputDecoration(
                   hintText: 'Password',

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:form/profile_page.dart';
 import 'package:form/splash_screen.dart';
-
 
 void main() {
   runApp(const MainApp());
@@ -18,7 +18,7 @@ class _MainAppState extends State<MainApp> {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: SplashScreen(),
+      home: ProfilePage(),
     );
   }
 }
