@@ -1,6 +1,7 @@
 
-import 'package:assets_dialogbottomsheet_navgator/gallery_page.dart';
+
 import 'package:assets_dialogbottomsheet_navgator/pages/contact_page.dart';
+import 'package:assets_dialogbottomsheet_navgator/pages/gallery_page.dart';
 import 'package:flutter/material.dart';
 
 class DrawerWidget extends StatelessWidget {

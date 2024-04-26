@@ -1,5 +1,5 @@
 import 'package:assets_dialogbottomsheet_navgator/model/list_image_model.dart';
-import 'package:assets_dialogbottomsheet_navgator/view_image.dart';
+import 'package:assets_dialogbottomsheet_navgator/pages/view_image_page.dart';
 import 'package:assets_dialogbottomsheet_navgator/widget/drawer_widget.dart';
 import 'package:flutter/material.dart';
 

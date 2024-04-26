@@ -1,5 +1,6 @@
 import 'package:assets_dialogbottomsheet_navgator/const/date_format_constant.dart';
-import 'package:assets_dialogbottomsheet_navgator/contact/contact_provider.dart';
+import 'package:assets_dialogbottomsheet_navgator/utils/contact_provider.dart';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

@@ -1,6 +1,6 @@
 import 'package:assets_dialogbottomsheet_navgator/bloc/button_bloc_bloc.dart';
-import 'package:assets_dialogbottomsheet_navgator/contact/contact_provider.dart';
-import 'package:assets_dialogbottomsheet_navgator/gallery_page.dart';
+import 'package:assets_dialogbottomsheet_navgator/pages/gallery_page.dart';
+import 'package:assets_dialogbottomsheet_navgator/utils/contact_provider.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';

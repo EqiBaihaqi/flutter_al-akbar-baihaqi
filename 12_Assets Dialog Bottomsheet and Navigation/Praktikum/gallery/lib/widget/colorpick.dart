@@ -1,4 +1,5 @@
-import 'package:assets_dialogbottomsheet_navgator/contact/contact_provider.dart';
+
+import 'package:assets_dialogbottomsheet_navgator/utils/contact_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:provider/provider.dart';

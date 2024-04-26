@@ -1,6 +1,7 @@
 import 'package:assets_dialogbottomsheet_navgator/bloc/button_bloc_bloc.dart';
 import 'package:assets_dialogbottomsheet_navgator/const/date_format_constant.dart';
-import 'package:assets_dialogbottomsheet_navgator/contact/contact_provider.dart';
+import 'package:assets_dialogbottomsheet_navgator/utils/contact_provider.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
@@ -10,7 +11,6 @@ class ListContact extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    int index = -1;
     return Consumer<ContactProvider>(
       builder: (context, provider, child) {
         return Container(
