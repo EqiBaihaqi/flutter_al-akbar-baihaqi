@@ -10,3 +10,5 @@
     c. Perangkat keras, terutama GPU & TPU
     d. Cloud Computing
     e. Investasi atau pendanaan
+
+link Google Document : https://docs.google.com/document/d/1HEfe_zQPZISJPpLM4gl4_pK_mjz2JsY8P_Fqi4fq7iQ/edit?usp=sharing
