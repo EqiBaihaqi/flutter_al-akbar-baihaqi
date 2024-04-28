@@ -1,0 +1,24 @@
+name: open_api_implement
+description: "A new Flutter project."
+publish_to: 'none'
+version: 0.1.0
+
+environment:
+  sdk: '>=3.3.3 <4.0.0'
+
+dependencies:
+  envied: ^0.5.4+1
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+  dio: ^5.4.3+1
+  intl: ^0.19.0
+  envied_generator: ^0.5.4+1
+  build_runner: ^2.4.9
+
+flutter:
+  uses-material-design: true
